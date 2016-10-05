@@ -16,7 +16,7 @@
       register: output
 
     - name: debug
-      debug: msg= "Docker stdout: {{ output.stdout }}"
+      debug: msg= "Docker stdout:" {{ output.stdout }}
 - hosts: all
   become: true
   tags: ['build']
