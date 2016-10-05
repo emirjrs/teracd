@@ -26,6 +26,7 @@
     - name: install
       yum: name=htop state=present
 - hosts: all
+  become: true
   tags: ['deploy']
   tasks:
     - name: down mariadb
