@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+ teracd:
+  build:
+   context: .
+  image: devops/teracd
+  container_name: teracd
+  hostname: teracd
+  privileged: true
+  mem_limit: "1G"
+  cpuset: "2"
+  command: "/usr/sbin/init"
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    - ../app:/var/www/html
+  environment:
+    - CONTAINER=docker
+    - TERM=xterm
+  ports:
+    - "8130:80"
