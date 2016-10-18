@@ -14,8 +14,11 @@
     - name: start docker-compose service
       docker_service: project_src=./devops build=yes
 
-    - name: copy site.yml inside the container
-      command: docker cp site.yml 
+    - name: copy site.yml inside the wp container
+      command: docker cp site.yml teracd_wp:/tmp/site.yml
+    
+    - name: copy site.yml inside the wpdb container
+      command: docker cp site.yml teracd_wpdb:/tmp/site.yml
 #      register: output
 
  #   - name: debug
