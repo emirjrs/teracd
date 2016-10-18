@@ -1,0 +1,36 @@
+---
+
+# Overview: Playbook para probar el módulo de docker service
+# Applies to: Development
+# Description:
+#    Levanta un servicio de docker-compose
+- hosts: all
+  become: true 
+  tags: ['docker']
+  tasks:
+    - name: stop docker-compose service
+      docker_service: project_src=./devops state=absent 
+
+    - name: start
+      docker_service: project_src=./devops build=yes
+      register: output
+
+    - name: debug
+      debug: msg=output.stdout
+- hosts: all
+  become: true
+  tags: ['build']
+  tasks:
+    - name: test
+      shell: echo "HELLO PABLO" >> /tmp/test2.txt
+    - name: install
+      yum: name=htop state=present
+- hosts: all
+  become: true
+  tags: ['deploy']
+  tasks:
+#    - name: down mariadb
+#      command: systemctl stop mariadb
+    - shell: echo "finished" >> /tmp/test2.txt
+#    - name: Configure MariaDB
+#      template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
