@@ -18,7 +18,7 @@
       command: docker cp site.yml teracd_wp:/tmp/site.yml
     
     - name: copy site.yml inside the wpdb container
-      command: docker cp site.yml teracd_wpdb:/tmp/site.yml
+      command: docker cp devops/site.yml teracd_wpdb:/tmp/site.yml
 #      register: output
 
  #   - name: debug
