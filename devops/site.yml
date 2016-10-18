@@ -11,18 +11,21 @@
     - name: stop docker-compose service
       docker_service: project_src=./devops state=absent 
 
-    - name: start
+    - name: start docker-compose service
       docker_service: project_src=./devops build=yes
-      register: output
 
-    - name: debug
-      debug: msg=output.stdout
+    - name: copy site.yml inside the container
+      command: docker cp site.yml 
+#      register: output
+
+ #   - name: debug
+ #     debug: msg=output.stdout
 - hosts: all
   become: true
   tags: ['build']
   tasks:
     - name: test
-      shell: echo "HELLO PABLO" >> /tmp/test2.txt
+      shell: echo "BUILD" >> /tmp/test2.txt
     - name: install
       yum: name=htop state=present
 - hosts: all
