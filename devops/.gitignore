@@ -1,0 +1,7 @@
+.sql
+.pub
+*key
+*/data/
+*.sql
+*/site/
+*/data/

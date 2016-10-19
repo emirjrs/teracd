@@ -1,27 +1,21 @@
 version: '2'
 services:
- db:
-  image: mysql:5.7
-  volumes:
-   - "./.data/db:/var/lib/mysql"
-  restart: always
-  container_name: teracd_wpdb
-  environment:
-   MYSQL_ROOT_PASSWORD: wordpress
-   MYSQL_DATABASE: wordpress
-   MYSQL_USER: wordpress
-   MYSQL_PASSWORD: wordpress
-
- wordpress:
-  depends_on:
-   - db
-  image: wordpress:latest
-  links:
-   - db
-  ports:
-   - "8000:80"
-  restart: always
-  container_name: teracd_wp
-  environment:
-   WORDPRESS_DB_HOST: db:3306
-   WORDPRESS_DB_PASSWORD: wordpress
+ testlampubuntu:
+    build: .
+    privileged: true
+    container_name: testlampubuntu
+    hostname: testlampubuntu
+    mem_limit: "1G"
+    memswap_limit: "1G"
+    cpuset: "2"
+    image: teravisiontech/wordpress
+    ports:
+      - "80"
+      - "22"
+    restart: always
+    environment:
+      TERM: xterm
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      - "./keys:/keys"
+      - "./data:/var/www/html"
