@@ -28,7 +28,7 @@
   tags: ['dexec']
   tasks:
     - name: ansible inside docker
-      command: docker exec -it project1wp bash -c 'ansible-playbook -i "localhost," -c local /tmp/site.yml --tags "build"'
+      command: docker exec -it project1wp ansible-playbook -i "localhost," -c local /tmp/site.yml --tags "build"
 #    - name: install
 #      yum: name=htop state=present
 - hosts: all
