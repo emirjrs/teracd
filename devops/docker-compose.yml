@@ -1,10 +1,10 @@
 version: '2'
 services:
- testlampubuntu:
+ project1wp:
     build: .
     privileged: true
-    container_name: testlampubuntu
-    hostname: testlampubuntu
+    container_name: project1wp
+    hostname: project1wp
     mem_limit: "1G"
     memswap_limit: "1G"
     cpuset: "2"

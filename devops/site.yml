@@ -25,18 +25,26 @@
  #     debug: msg=output.stdout
 - hosts: all
   become: true
-  tags: ['build']
+  tags: ['dexec']
   tasks:
-    - name: test
-      shell: echo "BUILD" >> /tmp/test2.txt
-    - name: install
-      yum: name=htop state=present
+    - name: ansible inside docker
+      command: docker exec -it project1wp bash -c 'ansible-playbook -i "localhost," -c local /tmp/site.yml --tags "build"'
+#    - name: install
+#      yum: name=htop state=present
 - hosts: all
   become: true
-  tags: ['deploy']
+  tags: ['build']
   tasks:
+#    - name: ansible inside docker
+#      command: docker exec -it project1wp basg -c 'ansible-playbook -i "localhost," -c local /tmp/site.yml --tags "build"'
+    - name: htop install
+      yum: name=htop state=present
+#- hosts: all
+#  become: true
+#  tags: ['deploy']
+#  tasks:
 #    - name: down mariadb
 #      command: systemctl stop mariadb
-    - shell: echo "finished" >> /tmp/test2.txt
+#    - command: echo "finished" >> /tmp/test2.txt
 #    - name: Configure MariaDB
 #      template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
