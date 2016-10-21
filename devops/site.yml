@@ -38,7 +38,7 @@
 #    - name: ansible inside docker
 #      command: docker exec -it project1wp basg -c 'ansible-playbook -i "localhost," -c local /tmp/site.yml --tags "build"'
     - name: htop install
-      yum: name=htop state=present
+      apt: name=htop state=present
 #- hosts: all
 #  become: true
 #  tags: ['deploy']

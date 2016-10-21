@@ -19,7 +19,15 @@ ENV LC_ALL en_US.UTF-8
 RUN cd /tmp && curl -O http://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb \
 && dpkg -i puppetlabs-release-pc1-trusty.deb \
 && apt-get update \
-&& apt-get -y install puppet git ansible curl acl mysql-client
+&& apt-get -y install puppet git curl acl mysql-client\
+
+#################### Instalacion de Ansible ################ agregado por EMIR REYES #################
+&& apt-get -y install software-properties-common \
+&& apt-add-repository ppa:ansible/ansible -y \
+&& apt-get update \
+&& apt-get -y install ansible
+######################################################################################################
+
 #&& unixodbc unixodbc-dev freetds-dev tdsodbc
 
 
